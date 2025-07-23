@@ -42,7 +42,7 @@ def length_vi(text):
 	
 def split_sents(text, lang):
 	if lang == 'zh':
-		sents = _split_zh(text)
+		sents = split_zh(text)
 		return sents
 	
 	sents = sent_tokenize(text)
@@ -51,17 +51,11 @@ def split_sents(text, lang):
 	refine_sents = [sents[-1]] 
 	index = len(sents) - 2
 	while index >= 0:
-		if not re.match(r'^.*?:?\s*\d+\s*\.$', sents[index]):
-			refine_sents.append(sents[index])
-			index -= 1
-			continue
-
-		if not re.match(r'^\d+\s*\.$', sents[index]):
-			refine_sents.append(sents[index])
-			index -= 1
-			continue
-
-		refine_sents[-1] = sents[index] + ' ' + refine_sents[-1]
+		
+		if re.match(r'^.*?:\s*\d+\s*\.$', sents[index]) or re.match(r'^\s*\d+\s*\.$', sents[index]):
+			refine_sents[-1] = sents[index] + ' ' + refine_sents[-1]
+		
+		else: refine_sents.append(sents[index])
 		index -= 1
 	
 	refine_sents.reverse()
