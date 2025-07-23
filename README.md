@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 ## Basic example
 
-Just import *PPAlign* and initialize it with the source and target text, which will detect the source and target language automatically and split both texts into sentences. Then invoke the method *align_sents()*  to align sentences and print out the result with *print_sents()*.
+Just import *PPAlign* and initialize it with the source and target text, which will split both texts into sentences automatically. Then invoke the method *align_sents()*  to align sentences and print out the result with *print_sents()*.
 
 ```python
 from ppalign import PPAlign
@@ -156,7 +156,7 @@ log_final_scores(scores)
 
 ## Citation
 
-V.Q.P. L.V.Phúc, “AUTOMATIC SENTENCE ALIGNMENT FOR ANCIENT CHINESE AND VIETNAMESE TRANSLATION, University of Science, Vietnam National University, Ho Chi Minh City,” 2025.
+V.Q.Phong. L.V.Phuc: Bachelor Thesis: “AUTOMATIC SENTENCE ALIGNMENT FOR ANCIENT CHINESE AND VIETNAMESE TRANSLATION, University of Science, Vietnam National University, Ho Chi Minh City” 2025.
 
 ## Licence
 
