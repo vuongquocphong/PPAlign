@@ -12,4 +12,4 @@ from ppalign.encoder import Encoder
 model_name = "LaBSE"
 model = Encoder(model_name)
 
-from ppalign.aligner import Bertalign
+from ppalign.aligner import PPAlign

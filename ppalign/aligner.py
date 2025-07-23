@@ -4,7 +4,7 @@ from ppalign.utils import *
 from ppalign.corelib import *
 import ppalign.constant as CONSTANT
 
-class Bertalign:
+class PPAlign:
     def __init__(self,
                  src,
                  tgt,
