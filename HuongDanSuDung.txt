@@ -1,0 +1,65 @@
+Before proceed, make sure that you have followed the packages installation instructions in HuongDanCaiDat.txt
+
+1. Align two paragraph 
+
+Just import PPAlign and initialize it with the source (classical Chinese) and target (Vietnamese) text, which will split both texts into sentences automatically. Then invoke the method align_sents()  to align sentences and print out the result with print_sents().
+
+## Example code
+```python
+from ppalign import PPAlign
+
+src = """滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢。古今多少事，都付笑谈中。——调寄《临江仙》"""
+
+tgt = """Có bài từ rằng: Trường Giang cuồn cuộn chảy về đông, Sóng vùi dập hết anh hùng. Được, thua, phải, trái, thoắt thành không. Non xanh nguyên vẻ cũ, Mấy độ bóng tà hồng! Bạn đầu bạc ngư tiều trên bãi, Đã quen nhìn thu nguyệt xuân phong. Một bầu rượu vui vẻ tương phùng. Xưa nay bao nhiêu việc, Phó mặc nói cười suông"""
+
+aligner = PPAlign(src, tgt)
+aligner.align_sents()
+aligner.print_sents()
+```
+
+2. Batch processing & evaluation
+
+The following example shows how to use PPAlign to align the Data corpus, and evaluate its performance with gold standard alignments. Assume that your Data folder has structure like this:
+Data
+|
+|----zh
+|-----|---- 001.txt
+|-----|---- 002.txt
+|----vi
+|-----|---- 001.txt
+|-----|---- 002.txt
+|----golden
+|-----|---- 001.txt
+|-----|---- 002.txt
+
+S
+```python
+import os
+from ppalign import PPAlign
+from ppalign.eval import *
+
+src_dir = "./Data/zh"
+tgt_dir = "./Data/vi"
+golden_dir = "./Data/golden"
+
+test_alignments = []
+gold_alignments = []
+
+for file in os.listdir(src_dir):
+    src_file = os.path.join(src_dir, file).replace("\\","/")
+    tgt_file = os.path.join(tgt_dir, file).replace("\\","/")
+    src = open(src_file, 'rt', encoding='utf-8').read()
+    tgt = open(tgt_file, 'rt', encoding='utf-8').read()
+
+    print("Start aligning {} to {}".format(src_file, tgt_file))
+    aligner = PPAlign(src, tgt)
+    aligner.align_sents()
+    test_alignments.append(aligner.result)
+
+    gold_file = os.path.join(golden_dir, file)
+    gold_alignments.append(read_alignments(gold_file))
+
+scores = score_multiple(gold_list=gold_alignments, test_list=test_alignments)
+log_final_scores(scores)
+```
+

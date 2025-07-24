@@ -1,0 +1,4 @@
+To install required packages on Windows, follow these steps:
+1. Create a new virtual environment: python3.10 -m venv venv
+2. Activate the created virtual environment: kindly refer to the following link, activating command is based on your platform: https://docs.python.org/3/library/venv.html#:~:text=the%20virtual%20environment)%3A-,Platform,PS%20C%3A%5C%3E%20%3Cvenv%3E%5CScripts%5CActivate.ps1,-Added%20in%20version
+3. Install related packages: pip install -r requirements.txt
