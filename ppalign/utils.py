@@ -42,7 +42,7 @@ def length_vi(text):
 	
 def split_sents(text, lang):
 	if lang == 'zh':
-		sents = split_zh(text)
+		sents = _split_zh(text)
 		return sents
 	
 	sents = sent_tokenize(text)
